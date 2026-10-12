@@ -1,0 +1,10 @@
+{
+  "name": "bip6-calc",
+  "version": "1.0.0",
+  "description": "Калькулятор для Amazfit Bip 6 (Zepp OS)",
+  "private": true,
+  "scripts": {
+    "build": "zeus build",
+    "preview": "node .tools/build-preview.js"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 9561526,
+    "appName": "Калькулятор",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "netherm3",
+    "description": "Калькулятор з пріоритетом операцій, відсотками та історією"
+  },
+  "permissions": ["data:os.device.info", "device:os.local_storage"],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "4.0",
+      "target": "4.0",
+      "minVersion": "4.0"
+    }
+  },
+  "debug": false,
+  "targets": {
+    "default": {
+      "module": {
+        "page": {
+          "pages": ["page/index", "page/history"]
+        }
+      },
+      "platforms": [
+        { "name": "bip6-cn", "deviceSource": 9765120, "dw": 390 },
+        { "name": "bip6", "deviceSource": 9765121, "dw": 390 },
+        { "name": "bip6-b", "deviceSource": 10158337, "dw": 390 }
+      ],
+      "designWidth": 390
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "appName": "Калькулятор"
+    },
+    "uk-UA": {
+      "appName": "Калькулятор"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
