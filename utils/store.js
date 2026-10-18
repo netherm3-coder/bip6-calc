@@ -2,7 +2,7 @@
 // коли екран гасне й програма закривається.
 
 import { readFileSync, writeFileSync, renameSync, rmSync, statSync } from '@zos/fs'
-import { blank, restoreState, restoreHistory } from './calc'
+import { blank, restoreState, restoreHistory, packState } from './calc'
 
 const FILE = 'calc.json'
 const TMP = 'calc.tmp'
@@ -25,7 +25,7 @@ export function loadData() {
 }
 
 export function saveData(data) {
-  const text = JSON.stringify({ v: 1, state: data.state, history: data.history })
+  const text = JSON.stringify({ v: 2, state: packState(data.state), history: data.history })
   try {
     writeFileSync({ path: TMP, data: text, options: { encoding: 'utf8' } })
     if (renameSync({ oldPath: TMP, newPath: FILE }) === 0) return true

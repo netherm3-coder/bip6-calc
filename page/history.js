@@ -118,7 +118,7 @@ Page({
       y: y + 8,
       w: textW,
       h: 30,
-      text: tailToFit(item.e + ' =', EXPR_SIZE, textW),
+      text: tailToFit(item.e, EXPR_SIZE, textW),
       text_size: EXPR_SIZE,
       color: COLOR.TEXT_DIM,
       align_h: hmUI.align.RIGHT,
@@ -130,8 +130,8 @@ Page({
       y: y + 38,
       w: textW,
       h: 46,
-      text: item.r,
-      text_size: fitSize(item.r, RESULT_SIZES, textW),
+      text: '= ' + item.r,
+      text_size: fitSize('= ' + item.r, RESULT_SIZES, textW),
       color: COLOR.TEXT,
       align_h: hmUI.align.RIGHT,
       align_v: hmUI.align.CENTER_V,
@@ -166,7 +166,7 @@ Page({
   recall(item) {
     if (this.leaving) return
     this.leaving = true
-    this.data.state = { tokens: [{ k: 'num', s: item.v }], done: true, error: '', expr: item.e }
+    this.data.state = { tokens: [{ k: 'num', s: item.v, r: true }], done: true, error: '', expr: item.e, deg: this.data.state.deg !== false }
     saveData(this.data)
     back()
   },

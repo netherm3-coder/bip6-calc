@@ -5,12 +5,12 @@
     "appName": "Калькулятор",
     "appType": "app",
     "version": {
-      "code": 1,
-      "name": "1.0.0"
+      "code": 2,
+      "name": "1.1.0"
     },
     "icon": "icon.png",
     "vender": "netherm3",
-    "description": "Калькулятор з пріоритетом операцій, відсотками та історією"
+    "description": "Калькулятор як на Xiaomi: дужки, наукові функції, відсотки, історія"
   },
   "permissions": ["data:os.device.info", "device:os.local_storage"],
   "runtime": {

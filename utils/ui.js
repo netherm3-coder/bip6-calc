@@ -58,3 +58,34 @@ export function tailToFit(text, size, width) {
   }
   return '…' + chars.slice(chars.length - lo).join('').replace(/^\s+/, '')
 }
+
+function rawWidth(text, size) {
+  try {
+    const r = hmUI.getTextLayout(String(text), { text_size: size, text_width: 2000, wrapped: 0 })
+    return r && r.width > 0 ? r.width : 0
+  } catch (e) {
+    return 0
+  }
+}
+
+// Чи є символ у шрифті годинника: ширина як у свідомо відсутнього символу — значить, немає.
+// Еталон — непризначений код U+0378 (його немає в жодному шрифті, на відміну від приватної
+// зони, де бувають значки). Сумнів — на користь запасного символу.
+export function glyphOk(ch, size) {
+  const base = rawWidth('aa', size)
+  const w = rawWidth('a' + ch + 'a', size) - base
+  if (!(base > 0) || !(w > 0)) return false
+  const miss = rawWidth('a\u0378a', size) - base
+  return !(miss > 0 && Math.abs(miss - w) < 0.5)
+}
+
+// Символи для виразу й клавіш — із запасними, якщо в шрифті їх немає.
+export function detectSymbols(size) {
+  return {
+    minus: glyphOk('−', size) ? '−' : '-',
+    sqrt: glyphOk('√', size) ? '√' : 'sqrt',
+    pi: glyphOk('π', size) ? 'π' : 'pi',
+    sq: glyphOk('²', size) ? '²' : '^2',
+    pow: glyphOk('ʸ', size) ? 'xʸ' : 'x^y'
+  }
+}
